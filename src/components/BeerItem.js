@@ -2,16 +2,20 @@ import Button from "./UI/Button";
 import BeerDescription from "./BeerDescription";
 import classes from "./BeerItem.module.css";
 import Card from "./UI/Card";
-
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { beersActions } from "../store/beers-slice";
 
 const BeerItem = (props) => {
+  const showBeerDetails = useSelector(
+    (state) => state.beers.descriptionIsShown
+  );
+
+  const dispatch = useDispatch();
+
   const { id, title, image } = props.beerData;
 
-  const [descriptionIsShown, setDescriptionIsShown] = useState(false);
-
   const onBeerClickHandler = () => {
-    setDescriptionIsShown(true);
+    dispatch(beersActions.toggle());
   };
 
   let beerName = title;
@@ -19,7 +23,7 @@ const BeerItem = (props) => {
     beerName = beerName.substring(0, 10);
   }
   const closeBeerDescription = () => {
-    setDescriptionIsShown(false);
+    dispatch(beersActions.toggle());
   };
 
   return (
@@ -38,7 +42,7 @@ const BeerItem = (props) => {
           />
         </div>
 
-        {descriptionIsShown && (
+        {showBeerDetails && (
           <BeerDescription
             onClick={closeBeerDescription}
             beerData={props.beerData}

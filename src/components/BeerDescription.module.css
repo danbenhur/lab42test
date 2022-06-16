@@ -1,0 +1,61 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+.beer_details {
+  position: fixed;
+  top: 4%;
+  right: 12%;
+  z-index: 10;
+  height: 90vh;
+  width: 75vw;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+}
+
+.details_properties {
+  width: 50%;
+  margin: 5% 10%;
+}
+.details_properties h2 {
+  color: #044599;
+  font-size: 2rem;
+}
+.details_properties h3 {
+  margin-bottom: 0;
+  text-align: left;
+  color: #044599;
+  font-size: 1.2rem;
+}
+.details_properties p {
+  margin-top: 0;
+  color: #044599;
+  font-size: 1.2rem;
+  text-align: left;
+}
+.details_img {
+  width: 50%;
+  margin: 5% 10%;
+  align-self: center;
+}
+.details_img img {
+  max-width: 170px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}

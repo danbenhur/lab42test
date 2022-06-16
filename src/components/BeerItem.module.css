@@ -1,0 +1,8 @@
+.beer_item img {
+  max-width: 10rem;
+  max-height: 10rem;
+}
+
+.beer_item h3 {
+  color: #044599;
+}

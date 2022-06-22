@@ -37,7 +37,10 @@ const BeerFilter = () => {
           ref={filterRef}
         />
 
-        <Button buttonText="Bring me My Beers!" />
+        <Button
+          buttonText="Bring me My Beers!"
+          buttonClass={classes.filter_form_button}
+        />
       </form>
     </>
   );

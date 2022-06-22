@@ -11,7 +11,6 @@ const FavoriteBeers = () => {
 
   return (
     <>
-      <p>This is Favorite Beers</p>
       <div className={classes.beers_grid}>{displayedBeers}</div>
     </>
   );

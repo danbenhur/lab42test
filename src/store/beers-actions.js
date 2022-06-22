@@ -1,5 +1,4 @@
 import { beersActions } from "./beers-slice";
-import { favActions } from "./fav-slice";
 import { uiActions } from "./ui-slice";
 
 export const fetchBeersData = () => {

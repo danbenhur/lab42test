@@ -3,20 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const favSlice = createSlice({
   name: "fav",
   initialState: {
-    favList: [
-      {
-        id: 123,
-        name: "hi",
-        image_url: "https://images.punkapi.com/v2/keg.png",
-      },
-    ],
+    favList: [],
   },
   reducers: {
     favs(state, action) {
-      const newFavItem = action.payload.newFavoritedItem;
-      state.favList = [...state.favList, newFavItem];
+      const currentItem = action.payload.currentItem;
+      const id = currentItem.id;
+      const existingItem = state.favList.find((item) => item.id === id);
 
-      console.log(state.favList);
+      if (!existingItem) {
+        state.favList = [...state.favList, currentItem];
+      } else {
+        state.favList = state.favList.filter((item) => item.id !== id);
+      }
     },
   },
 });

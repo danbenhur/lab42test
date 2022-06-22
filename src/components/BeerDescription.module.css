@@ -23,8 +23,12 @@
 
 .details_properties {
   width: 50%;
-  margin: 5% 10%;
-  overflow: scroll;
+}
+.details_properties_text {
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+  max-height: 80%;
 }
 .details_properties h2 {
   color: #044599;
@@ -44,7 +48,7 @@
 }
 .details_img {
   width: 50%;
-  margin: 5% 10%;
+  /*margin: 5% 10%;*/
   align-self: center;
 }
 .details_img img {
@@ -59,4 +63,25 @@
   height: 100vh;
   z-index: 10;
   background: rgba(0, 0, 0, 0.75);
+}
+
+.beer_item_add_button {
+  background-color: #044599;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 3rem;
+  margin: 1rem;
+  font-weight: 600;
+  border: 0px;
+  font-family: sans-serif;
+}
+.beer_item_remove_button {
+  background-color: #ffffff;
+  color: #044599;
+  border-radius: 5px;
+  padding: 0.5rem 3rem;
+  margin: 1rem;
+  font-weight: 600;
+  border: 1px solid #044599;
+  font-family: sans-serif;
 }

@@ -3,13 +3,18 @@ import BeerDescription from "./BeerDescription";
 import classes from "./BeerItem.module.css";
 import Card from "./UI/Card";
 import { favActions } from "../store/fav-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useState } from "react";
 
 const BeerItem = (props) => {
-  const dispatch = useDispatch();
   const { id, name, image_url } = props.beerData;
+  const favorites = useSelector((state) => state.fav.favList);
+
+  const itemIsFav = favorites.find((item) => item.name === name);
+  //console.log(itemIsFav);
+  const dispatch = useDispatch();
+
   const beerData = props.beerData;
 
   const [showBeerDetails, setShowBeerDetails] = useState(false);
@@ -24,8 +29,7 @@ const BeerItem = (props) => {
 
   const favHandler = (event) => {
     event.stopPropagation();
-
-    dispatch(favActions.favs({ newFavoritedItem: { id, name, image_url } }));
+    dispatch(favActions.favs({ currentItem: beerData }));
   };
 
   return (
@@ -40,8 +44,15 @@ const BeerItem = (props) => {
 
           <img alt="" src={image_url} />
           <Button
-            buttonAction={(event) => favHandler(event, { id, name, image_url })}
-            buttonText="Add To Favorites"
+            buttonAction={(event) => favHandler(event, beerData, itemIsFav)}
+            buttonText={`${
+              !itemIsFav ? "Add To Favorites" : "Remove From Favorites"
+            }`}
+            buttonClass={`${
+              !itemIsFav
+                ? classes.beer_item_add_button
+                : classes.beer_item_remove_button
+            }`}
           />
         </div>
 

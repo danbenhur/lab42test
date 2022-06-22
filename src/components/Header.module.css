@@ -22,14 +22,10 @@
   margin: 0 1rem;
 }
 
-/* .header a.logo {
-  color: white;
+.header a {
   text-decoration: none;
-  position: absolute;
+  color: #95bcf0;
 }
-.header a.logo img {
-  width: 100px;
-} */
 .header a:hover,
 .header a:active,
 .header a.active {

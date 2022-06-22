@@ -1,3 +1,38 @@
-.browse_beer {
+.beers_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
   text-align: center;
+}
+.beer_item img {
+  max-width: 10rem;
+  max-height: 10rem;
+}
+
+.beer_item h3 {
+  color: #044599;
+}
+
+.pagination_btn {
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  color: #044599;
+}
+.pagination_btn a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #044599;
+  color: #044599;
+  cursor: pointer;
+}
+.pagination_btn a:hover {
+  color: white;
+  background-color: #044599;
+}
+
+.pagination_active a {
+  color: white;
+  background-color: #044599;
 }

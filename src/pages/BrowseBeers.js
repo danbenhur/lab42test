@@ -1,71 +1,53 @@
-import { useState } from "react";
-import BeersList from "../components/BeersList";
-import Button from "../components/UI/Button";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { fetchBeersData } from "../store/beers-actions";
+
+import BeerFilter from "../components/BeerFilter";
+import BeerItem from "../components/BeerItem";
+import Spinner from "../components/UI/spinner";
+import ReactPaginate from "react-paginate";
+
 import classes from "./BrowseBeers.module.css";
 
 const BrowseBeer = () => {
-  const [beers, setBeers] = useState([]);
-  const [inputVal, setInputVal] = useState("");
-  const [favorites, setFavorites] = useState([]);
+  const showSpinner = useSelector((state) => state.ui.spinnerIsShown);
+  const beers = useSelector((state) => state.beers.beersFullList);
+  const dispatch = useDispatch();
 
-  const fetchBeers = async () => {
-    const response = await fetch(
-      `https://api.punkapi.com/v2/beers?food=${inputVal}`
-    );
-    if (!response.ok) {
-      console.log("RESPONSE IS NOT OKAY");
-      throw new Error("Something went wrong!");
-    } else {
-      console.log("RESPONSE IS OKAY");
-      const data = await response.json();
+  const [pageNumber, setPageNumber] = useState(0);
 
-      const loadedBeers = [];
+  const beersPerPage = 6;
+  const pageVisited = pageNumber * beersPerPage;
 
-      for (const key in data) {
-        loadedBeers.push({
-          key,
-          id: key,
-          title: data[key].name,
-          foodPairing: data[key].food_pairing,
-          image: data[key].image_url,
-          abv: data[key].abv,
-          description: data[key].description,
-          first_brewed: data[key].first_brewed,
-        });
-      }
-      setBeers(loadedBeers);
-    }
+  const displayedBeers = beers
+    .slice(pageVisited, pageVisited + beersPerPage)
+    .map((beer) => {
+      return <BeerItem beerData={beer} key={beer.id} />;
+    });
+
+  const pageCount = Math.ceil(beers.length / beersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
   };
-  const submitHandler = (event) => {
-    event.preventDefault();
-    fetchBeers();
-    setInputVal("");
-  };
-  const searchText =
-    "Tell us what you like to eat and we will tell you which beer to drink!";
 
-  const changeHandler = (e) => {
-    setInputVal(e.target.value);
-  };
+  useEffect(() => {
+    dispatch(fetchBeersData());
+  }, [dispatch]);
 
   return (
     <>
-      <div className={classes.browse_beer}>
-        <h2>{searchText}</h2>
-        <form onSubmit={submitHandler}>
-          <input
-            value={inputVal}
-            type="text"
-            id="food"
-            onChange={changeHandler}
-            placeholder="Type here your favorite food"
-          />
-
-          <Button buttonText="Bring me My Beers!" />
-        </form>
-      </div>
-
-      <BeersList beerList={beers} />
+      <BeerFilter />
+      {showSpinner && <Spinner />}
+      <div className={classes.beers_grid}>{displayedBeers}</div>
+      <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={classes.pagination_btn}
+        activeClassName={classes.pagination_active}
+      />
     </>
   );
 };

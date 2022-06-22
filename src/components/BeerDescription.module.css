@@ -24,6 +24,7 @@
 .details_properties {
   width: 50%;
   margin: 5% 10%;
+  overflow: scroll;
 }
 .details_properties h2 {
   color: #044599;

@@ -1,0 +1,26 @@
+.filter_title {
+  text-align: center;
+  width: 35vw;
+  margin: auto;
+}
+.filter_title h2 {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+.filter_title h5 {
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  font-size: 20px;
+  margin: 2px;
+}
+
+.filter_form {
+  display: flex;
+  justify-content: center;
+}
+.filter_form input {
+  border: 1px solid #044599;
+  border-radius: 5px;
+  margin: 1rem 0;
+}

@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const beersSlice = createSlice({
   name: "beers",
-  initialState: { descriptionIsShown: false },
+  initialState: { beersFullList: [] },
   reducers: {
-    toggle(state) {
-      state.descriptionIsShown = !state.descriptionIsShown;
+    beers(state, action) {
+      state.beersFullList = action.payload.beersFullList;
     },
   },
 });

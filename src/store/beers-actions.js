@@ -3,7 +3,7 @@ import { uiActions } from "./ui-slice";
 
 export const fetchBeersData = () => {
   return async (dispatch) => {
-    dispatch(uiActions.toggle({ spinnerIsShown: true }));
+    dispatch(uiActions.toggle());
     const fetchData = async () => {
       const response = await fetch("https://api.punkapi.com/v2/beers");
 
@@ -16,21 +16,25 @@ export const fetchBeersData = () => {
 
     try {
       const beersData = await fetchData();
-      dispatch(uiActions.toggle({ spinnerIsShown: false }));
+
       dispatch(beersActions.beers({ beersFullList: beersData }));
-    } catch (error) {}
+      dispatch(uiActions.toggle());
+    } catch (error) {
+      throw new Error("Somehing went wrong!");
+    }
   };
 };
 
 export const fetchFilteredBeers = (filter) => {
   return async (dispatch) => {
-    dispatch(uiActions.toggle({ spinnerIsShown: true }));
-    const fetchData = async () => {
+    dispatch(uiActions.toggle());
+    const fetchDataWithFilter = async () => {
       const response = await fetch(
         `https://api.punkapi.com/v2/beers?food=${filter}`
       );
 
       if (!response.ok) {
+        dispatch(uiActions.toggle());
         throw new Error("Could not fetch data!");
       }
 
@@ -39,17 +43,12 @@ export const fetchFilteredBeers = (filter) => {
     };
 
     try {
-      const beersData = await fetchData();
-      dispatch(uiActions.toggle({ spinnerIsShown: false }));
+      const beersData = await fetchDataWithFilter();
+      dispatch(uiActions.toggle());
       dispatch(beersActions.beers({ beersFullList: beersData }));
     } catch (error) {
-      // dispatch(
-      //   uiActions.showNotification({
-      //     status: "error",
-      //     title: "Error",
-      //     message: "Fetching cart data failed",
-      //   })
-      // );
+      dispatch(uiActions.toggle());
+      throw new Error("Somehing went wrong!");
     }
   };
 };

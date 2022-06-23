@@ -29,7 +29,18 @@
   background-color: #044599;
   color: white;
   border-radius: 5px;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 2.5rem;
+  margin: 1rem;
+  font-weight: 600;
+  border: 0px;
+  font-family: sans-serif;
+}
+
+.filter_form_button_disabled {
+  background-color: #294969;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
   margin: 1rem;
   font-weight: 600;
   border: 0px;

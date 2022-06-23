@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const BeerDescription = (props) => {
   const beerData = props.beerData;
   const dispatch = useDispatch();
-  const { title, food_pairing, image_url, abv, description, first_brewed } =
+  const { name, food_pairing, image_url, abv, description, first_brewed } =
     props.beerData;
 
   const favorites = useSelector((state) => state.fav.favList);
@@ -29,7 +29,7 @@ const BeerDescription = (props) => {
       <Card className={classes.beer_details}>
         <div className={classes.details_properties}>
           <div className={classes.details_properties_text}>
-            <h2>{title}</h2>
+            <h2>{name}</h2>
             <h3>Goes along great with:</h3>
             <p>{food_pairing}</p>
             <h3>abv:</h3>

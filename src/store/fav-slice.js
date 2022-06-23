@@ -17,6 +17,9 @@ const favSlice = createSlice({
         state.favList = state.favList.filter((item) => item.id !== id);
       }
     },
+    purge(state) {
+      state.favList = [];
+    },
   },
 });
 

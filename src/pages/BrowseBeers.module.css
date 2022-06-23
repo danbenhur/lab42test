@@ -36,3 +36,16 @@
   color: white;
   background-color: #044599;
 }
+
+.purge_button {
+  display: block;
+  background-color: #044599;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 3rem;
+  margin: 15px auto 0;
+
+  font-weight: 600;
+  border: 0px;
+  font-family: sans-serif;
+}

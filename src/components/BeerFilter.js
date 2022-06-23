@@ -1,11 +1,22 @@
-import Button from "./UI/Button";
 import { useRef } from "react";
 import { fetchFilteredBeers } from "../store/beers-actions";
 import { useDispatch } from "react-redux";
 import classes from "./BeersFilter.module.css";
+import { useState } from "react";
 
 const BeerFilter = () => {
+  const [input, setsetInput] = useState("");
+
+  const onChangeHandle = (event) => {
+    setsetInput(event.target.value);
+  };
+  let validQuery = false;
+  if (input.length > 2) {
+    validQuery = true;
+  }
+
   const filterRef = useRef();
+
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
@@ -35,12 +46,19 @@ const BeerFilter = () => {
           id="food"
           placeholder="Type here your favorite food"
           ref={filterRef}
+          onChange={onChangeHandle}
         />
 
-        <Button
-          buttonText="Bring me My Beers!"
-          buttonClass={classes.filter_form_button}
-        />
+        <button
+          disabled={!validQuery}
+          className={`${
+            validQuery
+              ? classes.filter_form_button
+              : classes.filter_form_button_disabled
+          }`}
+        >
+          "Get me My Beers!"
+        </button>
       </form>
     </>
   );

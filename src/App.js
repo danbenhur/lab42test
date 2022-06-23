@@ -1,21 +1,20 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import BrowseBeer from "./pages/BrowseBeers";
 import FavoriteBeers from "./pages/FavoriteBeers";
+import Modal from "./components/UI/Modal";
 import React from "react";
 
 function App() {
   return (
     <>
-      <div id="beer-description-backdrop"></div>
-      <div id="beer-description-content"></div>
+      <Modal />
       <Header />
-
       <Route path="/" exact>
-        <Redirect to="/browse-beers"></Redirect>
+        <BrowseBeer />
       </Route>
-      <Route path="/browse-beers">
+      <Route path="/browse-beers" exact>
         <BrowseBeer />
       </Route>
       <Route path="/favorite-beers">

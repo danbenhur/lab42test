@@ -26,6 +26,8 @@ const BrowseBeer = () => {
       return <BeerItem beerData={beer} key={beer.id} />;
     });
 
+  const noBeers = displayedBeers.length === 0;
+
   const pageCount = Math.ceil(beers.length / beersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -34,12 +36,16 @@ const BrowseBeer = () => {
   useEffect(() => {
     dispatch(fetchBeersData());
   }, [dispatch]);
-
   return (
     <>
       <BeerFilter />
       {showSpinner && <Spinner />}
-      <div className={classes.beers_grid}>{displayedBeers}</div>
+      {noBeers && (
+        <h2 style={{ textAlign: "center" }}>
+          Sorry, we can't find a beer that matches your search{" "}
+        </h2>
+      )}
+      {!noBeers && <div className={classes.beers_grid}>{displayedBeers}</div>}
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}

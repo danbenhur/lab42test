@@ -12,7 +12,6 @@ const BeerItem = (props) => {
   const favorites = useSelector((state) => state.fav.favList);
 
   const itemIsFav = favorites.find((item) => item.name === name);
-  //console.log(itemIsFav);
   const dispatch = useDispatch();
 
   const beerData = props.beerData;

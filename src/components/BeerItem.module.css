@@ -14,19 +14,21 @@
   background-color: #044599;
   color: white;
   border-radius: 5px;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 0rem;
   margin: 1rem;
   font-weight: 600;
   border: 0px;
   font-family: sans-serif;
+  width: 230px;
 }
 .beer_item_remove_button {
   background-color: #ffffff;
   color: #044599;
   border-radius: 5px;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 0rem;
   margin: 1rem;
   font-weight: 600;
   border: 1px solid #044599;
   font-family: sans-serif;
+  width: 230px;
 }
